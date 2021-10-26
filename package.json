@@ -2,7 +2,7 @@
   "name": "ghost-hunters-almanac",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://smilligan93.github.io/ghost-hunters-almanac",
+  "homepage": "https://smilligan93.github.io/ghost-hunters-almanac/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
