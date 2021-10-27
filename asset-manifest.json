@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ghost-hunters-almanac/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/ghost-hunters-almanac/static/js/main.cba95cb4.chunk.js",
-    "main.js.map": "/ghost-hunters-almanac/static/js/main.cba95cb4.chunk.js.map",
+    "main.js": "/ghost-hunters-almanac/static/js/main.adf862bb.chunk.js",
+    "main.js.map": "/ghost-hunters-almanac/static/js/main.adf862bb.chunk.js.map",
     "runtime-main.js": "/ghost-hunters-almanac/static/js/runtime-main.85d8dd63.js",
     "runtime-main.js.map": "/ghost-hunters-almanac/static/js/runtime-main.85d8dd63.js.map",
     "static/js/2.872d7a9d.chunk.js": "/ghost-hunters-almanac/static/js/2.872d7a9d.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.85d8dd63.js",
     "static/js/2.872d7a9d.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.cba95cb4.chunk.js"
+    "static/js/main.adf862bb.chunk.js"
   ]
 }
