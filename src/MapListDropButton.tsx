@@ -71,7 +71,7 @@ export const MapListDropButton = ({sharedState, maps, title} : Props) => {
                 dropProps={{round: 'small'}}
                 dropContent={
                     <Box direction="column" pad="small" gap="small" background="dark-1">
-                        {maps.map(map => <CheckBox toggle key={map} checked={state.includes(map)} onChange={() => addOrRemove(map)} label={map} /> )}
+                        {maps.map(map => <CheckBox key={map} checked={state.includes(map)} onChange={() => addOrRemove(map)} label={map} /> )}
                     </Box>
                 }
             >
