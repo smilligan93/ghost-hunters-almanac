@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Button, Text} from "grommet";
 import {Maps} from "./Maps";
 import {useNewSharedStateWithCookie} from "./hooks";
@@ -7,8 +7,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faDice} from "@fortawesome/free-solid-svg-icons";
 
 export const RandomMapControls = () => {
-    const mapsSharedState = useNewSharedStateWithCookie<string[]>([], 'selectedMaps');
-    const difficultySharedState = useNewSharedStateWithCookie<string[]>([], 'selectedDifficulties');
+    const mapsSharedState = useNewSharedStateWithCookie<string[]>([...Maps.small, ...Maps.medium, ...Maps.large], 'selectedMaps');
+    const difficultySharedState = useNewSharedStateWithCookie<string[]>([...Maps.difficulties], 'selectedDifficulties');
+
+    const [mapsEmpty, setMapsEmpty] = useState(false);
+
+    useEffect(() => {
+        const sub = mapsSharedState.subject.subscribe(maps => {
+            setMapsEmpty(maps.length === 0);
+        })
+        return () => sub.unsubscribe();
+    }, [mapsSharedState, setMapsEmpty])
 
     const [map, setMap] = useState<string | undefined>(undefined);
     const [difficulty, setDifficulty] = useState<string | undefined>(undefined);
@@ -44,12 +53,16 @@ export const RandomMapControls = () => {
                 <MapListDropButton sharedState={mapsSharedState} maps={Maps.large} title="Large" />
                 <MapListDropButton sharedState={difficultySharedState} maps={Maps.difficulties} title="Difficulty" />
             </Box>
+            <Box>
             <Button
+                disabled={mapsEmpty}
                 label={
                     <Box direction="row" align="center" justify="center" gap="small">
                         <Text>Randomize</Text><FontAwesomeIcon icon={faDice} />
                     </Box>
                 } onClick={() => handleMapGenerate()} />
+                {mapsEmpty && <Text color="status-error" size="small">Please select at least 1 map</Text> }
+            </Box>
             {map !== undefined &&
                 <Box
                     round="small"
