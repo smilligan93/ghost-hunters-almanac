@@ -1,6 +1,5 @@
 import React from 'react';
-import './App.css';
-import {Box, Grommet, Header, Heading, Text} from "grommet";
+import {Box, Grommet, Heading} from "grommet";
 import {RandomMapControls} from "./RandomMapControls";
 
 function App() {
