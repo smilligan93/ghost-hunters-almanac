@@ -14,5 +14,11 @@ export const Maps = {
     ],
     large: [
         'Asylum',
+    ],
+    difficulties: [
+        'Amateur',
+        'Intermediate',
+        'Professional',
+        'Nightmare'
     ]
 }
