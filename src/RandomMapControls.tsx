@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {Box, Button, Text} from "grommet";
 import {Maps} from "./Maps";
-import {useNewSharedState} from "./hooks";
+import {useNewSharedStateWithCookie} from "./hooks";
 import {MapListDropButton} from "./MapListDropButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faDice} from "@fortawesome/free-solid-svg-icons";
 
 export const RandomMapControls = () => {
-    const mapsSharedState = useNewSharedState<string[]>([]);
-    const difficultySharedState = useNewSharedState<string[]>([]);
+    const mapsSharedState = useNewSharedStateWithCookie<string[]>([], 'selectedMaps');
+    const difficultySharedState = useNewSharedStateWithCookie<string[]>([], 'selectedDifficulties');
 
     const [map, setMap] = useState<string | undefined>(undefined);
     const [difficulty, setDifficulty] = useState<string | undefined>(undefined);
