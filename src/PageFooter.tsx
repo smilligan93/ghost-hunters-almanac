@@ -1,5 +1,5 @@
 import React from 'react';
-import {Footer, Text} from "grommet";
+import {Footer} from "grommet";
 import {FooterItem} from "./FooterItem";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faGithub} from "@fortawesome/free-brands-svg-icons";
