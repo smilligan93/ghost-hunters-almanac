@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/ghost-hunters-almanac/static/css/main.a617e044.chunk.css",
-    "main.js": "/ghost-hunters-almanac/static/js/main.ededee96.chunk.js",
-    "main.js.map": "/ghost-hunters-almanac/static/js/main.ededee96.chunk.js.map",
-    "runtime-main.js": "/ghost-hunters-almanac/static/js/runtime-main.aca12710.js",
-    "runtime-main.js.map": "/ghost-hunters-almanac/static/js/runtime-main.aca12710.js.map",
-    "static/js/2.8294ee26.chunk.js": "/ghost-hunters-almanac/static/js/2.8294ee26.chunk.js",
-    "static/js/2.8294ee26.chunk.js.map": "/ghost-hunters-almanac/static/js/2.8294ee26.chunk.js.map",
-    "static/js/3.1d657403.chunk.js": "/ghost-hunters-almanac/static/js/3.1d657403.chunk.js",
-    "static/js/3.1d657403.chunk.js.map": "/ghost-hunters-almanac/static/js/3.1d657403.chunk.js.map",
+    "main.css": "/ghost-hunters-almanac/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/ghost-hunters-almanac/static/js/main.a8337ec7.chunk.js",
+    "main.js.map": "/ghost-hunters-almanac/static/js/main.a8337ec7.chunk.js.map",
+    "runtime-main.js": "/ghost-hunters-almanac/static/js/runtime-main.6fdc1908.js",
+    "runtime-main.js.map": "/ghost-hunters-almanac/static/js/runtime-main.6fdc1908.js.map",
+    "static/js/2.0012ea30.chunk.js": "/ghost-hunters-almanac/static/js/2.0012ea30.chunk.js",
+    "static/js/2.0012ea30.chunk.js.map": "/ghost-hunters-almanac/static/js/2.0012ea30.chunk.js.map",
+    "static/js/3.d71b98b8.chunk.js": "/ghost-hunters-almanac/static/js/3.d71b98b8.chunk.js",
+    "static/js/3.d71b98b8.chunk.js.map": "/ghost-hunters-almanac/static/js/3.d71b98b8.chunk.js.map",
     "index.html": "/ghost-hunters-almanac/index.html",
-    "static/css/main.a617e044.chunk.css.map": "/ghost-hunters-almanac/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.8294ee26.chunk.js.LICENSE.txt": "/ghost-hunters-almanac/static/js/2.8294ee26.chunk.js.LICENSE.txt"
+    "static/css/main.6dea0f05.chunk.css.map": "/ghost-hunters-almanac/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.0012ea30.chunk.js.LICENSE.txt": "/ghost-hunters-almanac/static/js/2.0012ea30.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.aca12710.js",
-    "static/js/2.8294ee26.chunk.js",
-    "static/css/main.a617e044.chunk.css",
-    "static/js/main.ededee96.chunk.js"
+    "static/js/runtime-main.6fdc1908.js",
+    "static/js/2.0012ea30.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.a8337ec7.chunk.js"
   ]
 }
