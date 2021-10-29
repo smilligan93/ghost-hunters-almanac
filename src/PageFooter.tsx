@@ -7,7 +7,7 @@ import {faGithub} from "@fortawesome/free-brands-svg-icons";
 export const PageFooter = () => {
 
     return (
-        <Footer background="dark-1" pad="medium" justify="end">
+        <Footer background="dark-1" pad="small" justify="end">
             <FooterItem icon={<FontAwesomeIcon icon={faGithub} />} label='GitHub' link='https://github.com/smilligan93/ghost-hunters-almanac'/>
         </Footer>
     )

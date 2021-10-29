@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid, Grommet, Heading, Tab, Tabs} from "grommet";
+import {Box, Grid, Grommet, Heading, Tab, Tabs, Text} from "grommet";
 import {RandomMapControls} from "./RandomMapControls";
 import { PageFooter } from './PageFooter';
 import {CookiesProvider} from "react-cookie";
@@ -9,9 +9,11 @@ function App() {
     return (
       <CookiesProvider>
           <Grommet full background="dark-2" >
-              <Grid rows={['flex', 'auto']} columns={['auto']} fill={"vertical"}>
+              <Grid rows={['auto', 'flex', 'auto']} columns={['auto']} fill={"vertical"}>
+                  <Box pad="small" align="center" background="dark-1" direction="row" justify="center">
+                          <Text size="xlarge"><i>Ghost Hunter's Almanac</i></Text>
+                  </Box>
                   <Box align="center" pad="large" overflow="auto">
-                      <Heading level="2">Ghost Hunter's Almanac</Heading>
                       <Tabs>
                           <Tab title="Random Map">
                               <Box pad={{top: 'small'}}>
