@@ -1,6 +1,6 @@
 import React from 'react';
 import {Ghost} from "../types/Ghost";
-import {Accordion, AccordionPanel, Box, Button, Grid, Text} from "grommet";
+import {Accordion, AccordionPanel, Box, Button, Text} from "grommet";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {evidenceName, iconForEvidence} from "../types/Evidence";
 import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
@@ -46,7 +46,7 @@ export const GhostList = ({ ghosts }: Props) => {
                                 round="xsmall"
                                 justify="evenly"
                                 wrap
-                                border={{style: 'groove', size: '1px', color: 'dark-1'}}
+                                border={{size: '1px', color: 'dark-1'}}
                                 pad={{vertical: "xsmall", horizontal: "small"}}
                             >
                                 {ghost.evidence.map(evi =>
@@ -56,20 +56,13 @@ export const GhostList = ({ ghosts }: Props) => {
                                     </Box>
                                 )}
                             </Box>
-                            <Grid rows={["auto"]} columns={["auto", "auto"]} gap="xsmall">
-                                <>
-                                    <Box align="end">
-                                        <Text weight="bold">Strength:</Text>
-                                    </Box>
-                                    <Text>{ghost.strength}</Text>
-                                </>
-                                <>
-                                    <Box align="end">
-                                        <Text weight="bold">Weakness:</Text>
-                                    </Box>
-                                    <Text>{ghost.weakness}</Text>
-                                </>
-                            </Grid>
+                            <Box direction="column" align="start" fill="horizontal">
+                                <b>Strengths</b>
+                                <Text><i>{ghost.strength}</i></Text>
+                                <br />
+                                <b>Weaknesses</b>
+                                <Text><i>{ghost.weakness}</i></Text>
+                            </Box>
                             <Box pad="small">
                                 <Button
                                     label={
