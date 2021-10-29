@@ -1,5 +1,5 @@
 import React, {useMemo, useState} from 'react';
-import {Evidence, iconForEvidence} from "../types/Evidence";
+import {Evidence, evidenceName, iconForEvidence} from "../types/Evidence";
 import { Ghosts } from "../game/Ghosts";
 import {Box, Button, CheckBox, Text} from "grommet";
 import {GhostList} from "./GhostList";
@@ -50,10 +50,13 @@ export const GhostFinder = () => {
                         <CheckBox
                             label={
                                 <>
-                                    <Text weight="bold" style={!possibleEvidences.includes(evidence) ? {textDecoration: 'line-through'} : undefined}>
-                                        {evidence.replaceAll('_', ' ')}&nbsp;
+                                    <Text
+                                        weight="bold"
+                                        color={enabledEvidences.includes(evidence) ? 'accent-1' : undefined}
+                                        style={!possibleEvidences.includes(evidence) ? {textDecoration: 'line-through'} : undefined}>
+                                        {evidenceName(evidence)}&nbsp;
+                                        <FontAwesomeIcon icon={iconForEvidence(evidence)} />
                                     </Text>
-                                    <FontAwesomeIcon icon={iconForEvidence(evidence)} />
                                 </>
                             }
                             disabled={!possibleEvidences.includes(evidence)}
