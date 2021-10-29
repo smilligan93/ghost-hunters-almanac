@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Button, Text} from "grommet";
-import {Maps} from "./game/Maps";
-import {useNewSharedStateWithCookie} from "./hooks";
+import {Maps} from "../game/Maps";
+import {useNewSharedStateWithCookie} from "../hooks";
 import {MapListDropButton} from "./MapListDropButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faDice} from "@fortawesome/free-solid-svg-icons";

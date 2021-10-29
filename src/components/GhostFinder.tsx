@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from 'react';
-import {Evidence, iconForEvidence} from "./types/Evidence";
-import { Ghosts } from "./game/Ghosts";
+import {Evidence, iconForEvidence} from "../types/Evidence";
+import { Ghosts } from "../game/Ghosts";
 import {Box, Button, CheckBox, Text} from "grommet";
 import {GhostList} from "./GhostList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

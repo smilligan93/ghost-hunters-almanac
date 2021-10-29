@@ -1,9 +1,9 @@
 import React from 'react';
-import {Box, Grid, Grommet, Heading, Tab, Tabs, Text} from "grommet";
-import {RandomMapControls} from "./RandomMapControls";
-import { PageFooter } from './PageFooter';
+import {Box, Grid, Grommet, Tab, Tabs, Text} from "grommet";
+import {RandomMapControls} from "./components/RandomMapControls";
+import { PageFooter } from './components/PageFooter';
 import {CookiesProvider} from "react-cookie";
-import {GhostFinder} from "./GhostFinder";
+import {GhostFinder} from "./components/GhostFinder";
 
 function App() {
     return (

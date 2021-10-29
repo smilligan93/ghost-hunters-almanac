@@ -1,8 +1,8 @@
 import React from 'react';
-import {Ghost} from "./types/Ghost";
+import {Ghost} from "../types/Ghost";
 import {Accordion, AccordionPanel, Box, Button, Grid, Text} from "grommet";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {evidenceName, iconForEvidence} from "./types/Evidence";
+import {evidenceName, iconForEvidence} from "../types/Evidence";
 import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
