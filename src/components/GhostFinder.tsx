@@ -86,7 +86,7 @@ export const GhostFinder = () => {
                 }
             />
             <Box fill="vertical" overflow="auto" margin={{top: 'small'}}>
-                <GhostList ghosts={possibleGhosts} />
+                <GhostList ghosts={possibleGhosts} enabledEvidence={enabledEvidences} />
             </Box>
         </Box>
     )
