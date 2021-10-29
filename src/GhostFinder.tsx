@@ -73,11 +73,17 @@ export const GhostFinder = () => {
                     </Box>
                 )}
             </Box>
-            <Box width="120px" pad={{horizontal: 'small', vertical: "xsmall"}} align="center" justify="center" border={{size: '1px'}} round="small" background="light-3">
-                <Button onClick={() => setEnabledEvidences([])} title="Clear enabled evidences">
-                    <Text>Clear</Text>&nbsp;&nbsp;<FontAwesomeIcon icon={faUndo} />
-                </Button>
-            </Box>
+            <Button
+                onClick={() => setEnabledEvidences([])}
+                title="Clear enabled evidences"
+                label={
+                    <Box width="100px" direction="row" justify="center" align="center">
+                        <Text>Clear</Text>
+                        &nbsp;&nbsp;
+                        <FontAwesomeIcon icon={faUndo} />
+                    </Box>
+                }
+            />
             <Box fill="vertical" overflow="auto" margin={{top: 'small'}}>
                 <GhostList ghosts={possibleGhosts} />
             </Box>

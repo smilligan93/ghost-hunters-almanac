@@ -9,6 +9,10 @@ import {
 
 export type Evidence = 'EMF_Level_5' | 'DOTS_Projector' | 'Fingerprints' | 'Ghost_Orb' | 'Ghost_Writing' | 'Freezing_Temperature' | 'Spirit_Box';
 
+export const evidenceName = (evidence: Evidence) => {
+    return evidence.replaceAll('_', ' ');
+}
+
 export const iconForEvidence = (evidence: Evidence) => {
     switch (evidence) {
         case "EMF_Level_5":
