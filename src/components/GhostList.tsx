@@ -50,7 +50,7 @@ export const GhostList = ({ ghosts }: Props) => {
                                 pad={{vertical: "xsmall", horizontal: "small"}}
                             >
                                 {ghost.evidence.map(evi =>
-                                    <Box key={evi} margin={{horizontal: "xsmall", vertical: "xxsmall"}} direction="row" align="center" gap="small">
+                                    <Box key={evi} margin={{horizontal: "small", vertical: "xxsmall"}} direction="row" align="center" gap="xsmall">
                                         <Text>{evidenceName(evi)}</Text>
                                         <FontAwesomeIcon icon={iconForEvidence(evi)} />
                                     </Box>
@@ -62,8 +62,13 @@ export const GhostList = ({ ghosts }: Props) => {
                                 <br />
                                 <b>Weaknesses</b>
                                 <Text><i>{ghost.weakness}</i></Text>
+                                <br />
+                                <b>Tips and Strategies</b>
+                                <ul style={{marginTop: '2px'}}>
+                                    {ghost.tips?.map(tip => <li key={tip}>{tip}</li>)}
+                                </ul>
                             </Box>
-                            <Box pad="small">
+                            <Box pad={{bottom: 'small'}}>
                                 <Button
                                     label={
                                         <Box direction="row" gap="small" align="center" justify="between">
