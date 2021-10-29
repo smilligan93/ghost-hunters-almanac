@@ -60,7 +60,7 @@ export const MapListDropButton = ({sharedState, maps, title} : Props) => {
     }
 
     return (
-        <Box direction="row" gap="small">
+        <Box direction="row" gap="small" pad="small">
             <CheckBox checked={hasAllMaps} indeterminate={!hasAllMaps && hasSomeMaps} onChange={(event) => {
                 event.stopPropagation();
                 event.preventDefault();

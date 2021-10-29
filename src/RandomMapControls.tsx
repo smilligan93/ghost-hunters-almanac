@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Button, Text} from "grommet";
-import {Maps} from "./Maps";
+import {Maps} from "./game/Maps";
 import {useNewSharedStateWithCookie} from "./hooks";
 import {MapListDropButton} from "./MapListDropButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -47,7 +47,7 @@ export const RandomMapControls = () => {
 
     return (
         <Box gap="medium" align="center">
-            <Box direction="row" gap="medium">
+            <Box direction="row" wrap>
                 <MapListDropButton sharedState={mapsSharedState} maps={Maps.small} title="Small" />
                 <MapListDropButton sharedState={mapsSharedState} maps={Maps.medium} title="Medium" />
                 <MapListDropButton sharedState={mapsSharedState} maps={Maps.large} title="Large" />
