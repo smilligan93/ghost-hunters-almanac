@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {Box, Button, Text} from "grommet";
 import {difficulties, Maps} from "../game/Maps";
-import {useNewSharedStateWithCookie} from "../hooks";
+import {useNewSharedStateWithCookie, useSharedState} from "../hooks";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCaretDown, faCaretUp, faDice} from "@fortawesome/free-solid-svg-icons";
 import {GameMap} from "../types/Map";
@@ -11,10 +11,11 @@ import {MapInfo} from "./MapInfo";
 export const RandomMapControls = () => {
     const mapsSharedState = useNewSharedStateWithCookie<string[]>([...Maps.map(map => map.name)], 'selectedMaps');
     const difficultySharedState = useNewSharedStateWithCookie<string[]>([...difficulties], 'selectedDifficulties');
+    const showMapInfoSharedState = useNewSharedStateWithCookie<boolean>(false, 'showRandomMapInfo');
 
     const [mapsEmpty, setMapsEmpty] = useState(false);
 
-    const [showMapInfo, setShowMapInfo] = useState(false);
+    const [showMapInfo, setShowMapInfo] = useSharedState(showMapInfoSharedState);
 
     useEffect(() => {
         const sub = mapsSharedState.subject.subscribe(maps => {
