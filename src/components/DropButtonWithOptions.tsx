@@ -7,41 +7,41 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
     sharedState: SharedState<string[]>;
-    maps: string[];
+    options: string[]
     title: string;
 
 }
 
-export const MapListDropButton = ({sharedState, maps, title} : Props) => {
+export const DropButtonWithOptions = ({sharedState, options, title} : Props) => {
     const [state, setState] = useSharedState(sharedState);
 
-    const addOrRemove = (map: string) => {
+    const addOrRemove = (difficulty: string) => {
         const copy = state.slice();
-        const index = copy.indexOf(map);
+        const index = copy.indexOf(difficulty);
         // if we have a good index, we need to remove it
         if (index >= 0) {
             copy.splice(index, 1);
             setState(copy);
         } else {
-            copy.push(map);
+            copy.push(difficulty);
             setState(copy);
         }
     }
 
-    const [hasAllMaps, hasSomeMaps] = useMemo(() => {
+    const [hasAll, hasSome] = useMemo(() => {
         let count = 0;
-        for (const map of maps) {
-            if (state.includes(map)) {
+        for (const diff of options) {
+            if (state.includes(diff)) {
                 count ++;
             }
         }
-        return [count === maps.length, count > 0];
-    }, [maps, state]);
+        return [count === options.length, count > 0];
+    }, [state, options]);
 
     const toggleAllMaps = () => {
-        if (hasAllMaps) {
+        if (hasAll) {
             let copy = state.slice();
-            for (const map of maps) {
+            for (const map of options) {
                 const index = copy.indexOf(map);
                 if (index >= 0) {
                     copy.splice(index, 1);
@@ -50,7 +50,7 @@ export const MapListDropButton = ({sharedState, maps, title} : Props) => {
             setState(copy);
         } else {
             let copy = state.slice();
-            for (const map of maps) {
+            for (const map of options) {
                 if (!copy.includes(map)) {
                     copy.push(map);
                 }
@@ -61,7 +61,7 @@ export const MapListDropButton = ({sharedState, maps, title} : Props) => {
 
     return (
         <Box direction="row" gap="small" pad="small">
-            <CheckBox checked={hasAllMaps} indeterminate={!hasAllMaps && hasSomeMaps} onChange={(event) => {
+            <CheckBox checked={hasAll} indeterminate={!hasAll && hasSome} onChange={(event) => {
                 event.stopPropagation();
                 event.preventDefault();
                 toggleAllMaps();
@@ -71,7 +71,7 @@ export const MapListDropButton = ({sharedState, maps, title} : Props) => {
                 dropProps={{round: 'small'}}
                 dropContent={
                     <Box direction="column" pad="small" gap="small" background="dark-1">
-                        {maps.map(map => <CheckBox key={map} checked={state.includes(map)} onChange={() => addOrRemove(map)} label={map} /> )}
+                        {options.map(diff => <CheckBox key={diff} checked={state.includes(diff)} onChange={() => addOrRemove(diff)} label={diff} /> )}
                     </Box>
                 }
             >

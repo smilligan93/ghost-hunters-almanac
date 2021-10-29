@@ -1,16 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Box, Button, Text} from "grommet";
-import {Maps} from "../game/Maps";
+import {difficulties, Maps} from "../game/Maps";
 import {useNewSharedStateWithCookie} from "../hooks";
-import {MapListDropButton} from "./MapListDropButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faDice} from "@fortawesome/free-solid-svg-icons";
+import {faCaretDown, faCaretUp, faDice} from "@fortawesome/free-solid-svg-icons";
+import {GameMap} from "../types/Map";
+import {DropButtonWithOptions} from "./DropButtonWithOptions";
+import {MapInfo} from "./MapInfo";
 
 export const RandomMapControls = () => {
-    const mapsSharedState = useNewSharedStateWithCookie<string[]>([...Maps.small, ...Maps.medium, ...Maps.large], 'selectedMaps');
-    const difficultySharedState = useNewSharedStateWithCookie<string[]>([...Maps.difficulties], 'selectedDifficulties');
+    const mapsSharedState = useNewSharedStateWithCookie<string[]>([...Maps.map(map => map.name)], 'selectedMaps');
+    const difficultySharedState = useNewSharedStateWithCookie<string[]>([...difficulties], 'selectedDifficulties');
 
     const [mapsEmpty, setMapsEmpty] = useState(false);
+
+    const [showMapInfo, setShowMapInfo] = useState(false);
 
     useEffect(() => {
         const sub = mapsSharedState.subject.subscribe(maps => {
@@ -19,20 +23,20 @@ export const RandomMapControls = () => {
         return () => sub.unsubscribe();
     }, [mapsSharedState, setMapsEmpty])
 
-    const [map, setMap] = useState<string | undefined>(undefined);
+    const [map, setMap] = useState<GameMap | undefined>(undefined);
     const [difficulty, setDifficulty] = useState<string | undefined>(undefined);
 
     const handleMapGenerate = () => {
         const maps = mapsSharedState.get();
         if (maps.length > 0) {
             // don't duplicate maps in a row
-            let newMap;
+            let newMap: string;
             do {
                 const randomNum = Math.floor(Math.random() * maps.length);
                 newMap = maps[randomNum];
-            } while (map === newMap);
+            } while (map?.name === newMap && maps.length > 1);
 
-            setMap(newMap);
+            setMap(Maps.find(m => m.name === newMap));
         }
         const difficulties = difficultySharedState.get();
         if (difficulties.length > 0) {
@@ -45,13 +49,24 @@ export const RandomMapControls = () => {
         }
     }
 
+    const [smallMaps, mediumMaps, largeMaps] = useMemo(() => Maps.reduce(([small, medium, large], cmap) => {
+        if (cmap.size === 'small') {
+            small.push(cmap.name);
+        } else if (cmap.size === 'medium') {
+            medium.push(cmap.name);
+        } else if (cmap.size === 'large') {
+            large.push(cmap.name);
+        }
+        return [small, medium, large];
+    }, [[], [], []] as [string[], string[], string[]]), [])
+
     return (
         <Box gap="medium" align="center">
             <Box direction="row" wrap>
-                <MapListDropButton sharedState={mapsSharedState} maps={Maps.small} title="Small" />
-                <MapListDropButton sharedState={mapsSharedState} maps={Maps.medium} title="Medium" />
-                <MapListDropButton sharedState={mapsSharedState} maps={Maps.large} title="Large" />
-                <MapListDropButton sharedState={difficultySharedState} maps={Maps.difficulties} title="Difficulty" />
+                <DropButtonWithOptions sharedState={mapsSharedState} options={smallMaps} title="Small" />
+                <DropButtonWithOptions sharedState={mapsSharedState} options={mediumMaps} title="Medium" />
+                <DropButtonWithOptions sharedState={mapsSharedState} options={largeMaps} title="Large" />
+                <DropButtonWithOptions sharedState={difficultySharedState} options={difficulties} title="Difficulty" />
             </Box>
             <Box>
             <Button
@@ -65,16 +80,36 @@ export const RandomMapControls = () => {
                 {mapsEmpty && <Text color="status-error" size="small">Please select at least 1 map</Text> }
             </Box>
             {map !== undefined &&
-                <Box
-                    round="small"
-                    align='center'
-                    justify='center'
-                    pad={{vertical: 'xsmall', horizontal: 'small'}}
-                    border={{size: '1px'}}
-                    background="accent-2"
-                    width={{min: '300px'}}
-                >
-                    <Text>{map}</Text>{difficulty && <Text>on {difficulty}</Text>}
+                <Box gap="small" align="center">
+                    <Box
+                        flex={false}
+                        round="small"
+                        align='center'
+                        justify='center'
+                        border={{size: '1px'}}
+                        background="accent-2"
+                        width={{min: '300px'}}
+                    >
+                        <Box align="center" pad={{vertical: 'xsmall', horizontal: 'small'}}>
+                            <Text>{map.name}</Text>{difficulty && <Text>on {difficulty}</Text>}
+                        </Box>
+                        <Box
+                            round={{corner: 'bottom', size: 'small'}}
+                            fill="horizontal"
+                            border={{size: '1px', side: 'top'}}
+                            align="center"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                setShowMapInfo(!showMapInfo)
+                            }}
+                        >
+                            <FontAwesomeIcon icon={showMapInfo ? faCaretDown : faCaretUp} />
+                        </Box>
+                    </Box>
+                    {showMapInfo &&
+                        <MapInfo map={map} />
+                    }
                 </Box>
             }
         </Box>
