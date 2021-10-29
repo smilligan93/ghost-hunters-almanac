@@ -11,15 +11,15 @@ function App() {
           <Grommet full background="dark-2" >
               <Grid rows={['flex', 'auto']} columns={['auto']} fill={"vertical"}>
                   <Box align="center" pad="large" overflow="auto">
-                      <Heading>Ghost Hunter's Almanac</Heading>
+                      <Heading level="2">Ghost Hunter's Almanac</Heading>
                       <Tabs>
                           <Tab title="Random Map">
-                              <Box pad={{top: 'large'}}>
+                              <Box pad={{top: 'small'}}>
                                   <RandomMapControls />
                               </Box>
                           </Tab>
                           <Tab title="Ghost Helper">
-                              <Box pad={{top: 'large'}}>
+                              <Box pad={{top: 'small'}}>
                                   <GhostFinder />
                               </Box>
                           </Tab>
