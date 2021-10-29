@@ -3,6 +3,7 @@ import {Ghost} from "./types/Ghost";
 import {Accordion, AccordionPanel, Box, Button, Grid, Text} from "grommet";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {evidenceName, iconForEvidence} from "./types/Evidence";
+import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
     ghosts: Ghost[];
@@ -10,56 +11,52 @@ type Props = {
 
 export const GhostList = ({ ghosts }: Props) => {
 
+    const ghostName = (type: string) => {
+        return type.replaceAll("_", " ");
+    }
+
     return (
-        <Box align="center">
-            <Accordion>
+        <Box align="center" width="600px" margin={{bottom: 'large'}}>
+            <Accordion fill="horizontal">
                 {ghosts.map(ghost => (
-                    <AccordionPanel label={
+                    <AccordionPanel key={ghost.type} label={
                         <Box
                             direction="row"
                             gap="small"
                             pad="small"
-                            width={"400px"}
+                            fill="horizontal"
                             justify="between"
                             align="center"
                         >
-                            <Text weight="bold" size="large">{ghost.type}</Text>
+                            <Text weight="bold" size="large">{ghostName(ghost.type)}</Text>
                             <Box direction="row" gap="xsmall">
                                 {ghost.evidence.map((evidence) => (
-                                    <Box width="20px" align="center" justify="center">
+                                    <Box key={evidence} width="25px" align="center" justify="center">
                                         <FontAwesomeIcon title={evidenceName(evidence)} size={"1x"} icon={iconForEvidence(evidence)} />
                                     </Box>
                                 ))}
                             </Box>
                         </Box>
                     }>
-                        <Box pad={{horizontal: 'medium'}} align="center">
+                        <Box gap="small" pad={{horizontal: 'medium'}} align="center">
+                            <Text size="small"><i>{ghost.description}</i></Text>
+                            <Box
+                                direction="row"
+                                background="light-2"
+                                round="xsmall"
+                                justify="evenly"
+                                wrap
+                                border={{style: 'groove', size: '1px', color: 'dark-1'}}
+                                pad={{vertical: "xsmall", horizontal: "small"}}
+                            >
+                                {ghost.evidence.map(evi =>
+                                    <Box key={evi} margin={{horizontal: "xsmall", vertical: "xxsmall"}} direction="row" align="center" gap="small">
+                                        <Text>{evidenceName(evi)}</Text>
+                                        <FontAwesomeIcon icon={iconForEvidence(evi)} />
+                                    </Box>
+                                )}
+                            </Box>
                             <Grid rows={["auto"]} columns={["auto", "auto"]} gap="xsmall">
-                                <>
-                                    <Box align="end">
-                                        <Text weight="bold">Ghost:</Text>
-                                    </Box>
-                                    <Text>{ghost.type}</Text>
-                                </>
-                                <>
-                                    <Box align="end">
-                                        <Text weight="bold">Evidences:</Text>
-                                    </Box>
-                                    <Box direction="column">
-                                        {ghost.evidence.map(evi =>
-                                            <Box direction="row" align="center" gap="small">
-                                                <Text>{evidenceName(evi)}</Text>
-                                                <FontAwesomeIcon icon={iconForEvidence(evi)} />
-                                            </Box>
-                                       )}
-                                    </Box>
-                                </>
-                                <>
-                                    <Box align="end">
-                                        <Text weight="bold">Lore:</Text>
-                                    </Box>
-                                    <Text><i>{ghost.description}</i></Text>
-                                </>
                                 <>
                                     <Box align="end">
                                         <Text weight="bold">Strength:</Text>
@@ -72,15 +69,16 @@ export const GhostList = ({ ghosts }: Props) => {
                                     </Box>
                                     <Text>{ghost.weakness}</Text>
                                 </>
-                                <>
-                                    <Box align="end">
-                                        <Text weight="bold">Behavior:</Text>
-                                    </Box>
-                                    <Text>{'TODO'}</Text>
-                                </>
                             </Grid>
                             <Box pad="small">
-                                <Button label={"Wiki Page"} onClick={() => window.open(`https://phasmophobia.fandom.com/wiki/${ghost.type}`, '_blank')} />
+                                <Button
+                                    label={
+                                        <Box direction="row" gap="small" align="center" justify="between">
+                                            <Text>Wiki Page</Text><FontAwesomeIcon icon={faArrowRight} />
+                                        </Box>
+                                    }
+                                    onClick={() => window.open(`https://phasmophobia.fandom.com/wiki/${ghost.type}`, '_blank')}
+                                />
                             </Box>
                         </Box>
                     </AccordionPanel>

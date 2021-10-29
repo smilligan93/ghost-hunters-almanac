@@ -46,7 +46,7 @@ export const GhostFinder = () => {
         <Box align="center">
             <Box direction="row" wrap align="center" justify="center" margin={{bottom: 'small'}} width={{max: '1000px'}}>
                 {evidenceTypes.map((evidence) =>
-                    <Box pad="small">
+                    <Box key={evidence} pad="small">
                         <CheckBox
                             label={
                                 <>
