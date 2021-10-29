@@ -4,11 +4,12 @@ import {RandomMapControls} from "./components/RandomMapControls";
 import { PageFooter } from './components/PageFooter';
 import {CookiesProvider} from "react-cookie";
 import {GhostFinder} from "./components/GhostFinder";
+import {Theme} from "./Theme";
 
 function App() {
     return (
       <CookiesProvider>
-          <Grommet full background="dark-2" >
+          <Grommet full background="dark-2" theme={Theme}>
               <Grid rows={['auto', 'flex', 'auto']} columns={['auto']} fill={"vertical"}>
                   <Box pad="small" align="center" background="dark-1" direction="row" justify="center">
                           <Text size="xlarge"><i>Ghost Hunter's Almanac</i></Text>

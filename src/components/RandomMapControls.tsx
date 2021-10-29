@@ -55,6 +55,7 @@ export const RandomMapControls = () => {
             </Box>
             <Box>
             <Button
+                primary
                 disabled={mapsEmpty}
                 label={
                     <Box direction="row" align="center" justify="center" gap="small">
@@ -68,9 +69,9 @@ export const RandomMapControls = () => {
                     round="small"
                     align='center'
                     justify='center'
-                    pad='medium'
+                    pad={{vertical: 'xsmall', horizontal: 'small'}}
                     border={{size: '1px'}}
-                    background="light-2"
+                    background="accent-2"
                     width={{min: '300px'}}
                 >
                     <Text>{map}</Text>{difficulty && <Text>on {difficulty}</Text>}

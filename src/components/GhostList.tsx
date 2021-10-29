@@ -42,7 +42,7 @@ export const GhostList = ({ ghosts }: Props) => {
                             <Text size="small"><i>{ghost.description}</i></Text>
                             <Box
                                 direction="row"
-                                background="light-2"
+                                background="accent-2"
                                 round="xsmall"
                                 justify="evenly"
                                 wrap

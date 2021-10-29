@@ -74,6 +74,7 @@ export const GhostFinder = () => {
                 )}
             </Box>
             <Button
+                primary
                 onClick={() => setEnabledEvidences([])}
                 title="Clear enabled evidences"
                 label={
