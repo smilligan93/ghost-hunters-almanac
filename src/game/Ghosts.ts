@@ -2,97 +2,97 @@ import {Ghost} from "../types/Ghost";
 
 export const Banshee: Ghost = {
     type: 'Banshee',
-    evidence: ['Fingerprints', 'DOTS', 'Ghost Orbs'],
+    evidence: ['Fingerprints', 'DOTS_Projector', 'Ghost_Orb'],
 }
 
 export const Demon: Ghost = {
     type: 'Demon',
-    evidence: ['Fingerprints', 'Book Writing', 'Freezing Temperature'],
+    evidence: ['Fingerprints', 'Ghost_Writing', 'Freezing_Temperature'],
 }
 
 export const Goryo: Ghost = {
     type: 'Goryo',
-    evidence: ['EMF 5', 'Fingerprints', 'DOTS'],
+    evidence: ['EMF_Level_5', 'Fingerprints', 'DOTS_Projector'],
 }
 
 export const Hantu: Ghost = {
     type: 'Hantu',
-    evidence: ['Fingerprints', 'Ghost Orbs', 'Freezing Temperature'],
+    evidence: ['Fingerprints', 'Ghost_Orb', 'Freezing_Temperature'],
 }
 
 export const Jinn: Ghost = {
     type: 'Jinn',
-    evidence: ['EMF 5', 'Fingerprints', 'Freezing Temperature'],
+    evidence: ['EMF_Level_5', 'Fingerprints', 'Freezing_Temperature'],
 }
 
 export const Mare: Ghost = {
     type: 'Mare',
-    evidence: ['Spirit Box', 'Ghost Orbs', 'Book Writing'],
+    evidence: ['Spirit_Box', 'Ghost_Orb', 'Ghost_Writing'],
 }
 
 export const Myling: Ghost = {
     type: 'Myling',
-    evidence: ['EMF 5', 'Fingerprints', 'Book Writing'],
+    evidence: ['EMF_Level_5', 'Fingerprints', 'Ghost_Writing'],
 }
 
 export const Oni: Ghost = {
     type: 'Oni',
-    evidence: ['EMF 5', 'Freezing Temperature', 'DOTS'],
+    evidence: ['EMF_Level_5', 'Freezing_Temperature', 'DOTS_Projector'],
 }
 
 export const Onryo: Ghost = {
     type: 'Onryo',
-    evidence: ['Spirit Box', 'Ghost Orbs', 'Freezing Temperature'],
+    evidence: ['Spirit_Box', 'Ghost_Orb', 'Freezing_Temperature'],
 }
 
 export const Phantom: Ghost = {
     type: 'Phantom',
-    evidence: ['Spirit Box', 'Fingerprints', 'DOTS'],
+    evidence: ['Spirit_Box', 'Fingerprints', 'DOTS_Projector'],
 }
 
 export const Poltergeist: Ghost = {
     type: 'Poltergeist',
-    evidence: ['Spirit Box', 'Book Writing', 'Fingerprints'],
+    evidence: ['Spirit_Box', 'Ghost_Writing', 'Fingerprints'],
 }
 
 export const Raiju: Ghost = {
     type: 'Raiju',
-    evidence: ['EMF 5', 'Ghost Orbs', 'DOTS'],
+    evidence: ['EMF_Level_5', 'Ghost_Orb', 'DOTS_Projector'],
 }
 
 export const Revenant: Ghost = {
     type: 'Revenant',
-    evidence: ['Ghost Orbs', 'Book Writing', 'Freezing Temperature'],
+    evidence: ['Ghost_Orb', 'Ghost_Writing', 'Freezing_Temperature'],
 }
 
 export const Shade: Ghost = {
     type: 'Shade',
-    evidence: ['EMF 5', 'Book Writing', 'Freezing Temperature'],
+    evidence: ['EMF_Level_5', 'Ghost_Writing', 'Freezing_Temperature'],
 }
 
 export const Spirit: Ghost = {
     type: 'Spirit',
-    evidence: ['EMF 5', 'Spirit Box', 'Book Writing'],
+    evidence: ['EMF_Level_5', 'Spirit_Box', 'Ghost_Writing'],
 }
 
 export const Twins: Ghost = {
     type: 'Twins',
-    evidence: ['EMF 5', 'Spirit Box', 'Freezing Temperature'],
+    evidence: ['EMF_Level_5', 'Spirit_Box', 'Freezing_Temperature'],
 }
 
 export const Wraith: Ghost = {
     type: 'Wraith',
-    evidence: ['EMF 5', 'Spirit Box', 'DOTS'],
+    evidence: ['EMF_Level_5', 'Spirit_Box', 'DOTS_Projector'],
 }
 
 export const Yokai: Ghost = {
     type: 'Yokai',
-    evidence: ['Spirit Box', 'Ghost Orbs', 'DOTS'],
+    evidence: ['Spirit_Box', 'Ghost_Orb', 'DOTS_Projector'],
 }
 
 export const Yurei: Ghost = {
     type: 'Yurei',
-    evidence: ['Ghost Orbs', 'Freezing Temperature', 'DOTS']
+    evidence: ['Ghost_Orb', 'Freezing_Temperature', 'DOTS_Projector']
 }
 
 export const Ghosts = [

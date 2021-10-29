@@ -1,6 +1,17 @@
 import React from 'react';
 import {Ghost} from "./types/Ghost";
 import {Box, Text} from "grommet";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {Evidence, iconForEvidence} from "./types/Evidence";
+import {
+    faThermometerEmpty,
+    faBookOpen,
+    faCircle,
+    faFingerprint,
+    faBraille,
+    faTachometerAlt, faMobile, faWifi
+} from "@fortawesome/free-solid-svg-icons";
+
 
 type Props = {
     ghosts: Ghost[];
@@ -9,16 +20,23 @@ type Props = {
 export const GhostList = ({ ghosts }: Props) => {
 
     return (
-        <Box>
+        <Box align="center">
             {ghosts.map(ghost => (
                 <Box
                     direction="row"
                     gap="small"
                     pad="small"
                     border={{size: '1px'}}
-                    width={{min: "20vw"}}
-                    justify="center">
-                    <Text>{ghost.type}</Text>
+                    width={"400px"}
+                    justify="between"
+                    align="center"
+                >
+                    <Text weight="bold" size="large">{ghost.type}</Text>
+                    <Box direction="row" gap="xsmall">
+                        {ghost.evidence.map((evidence) => (
+                            <FontAwesomeIcon title={evidence.replaceAll('_', ' ')} size={"1x"} icon={iconForEvidence(evidence)} />
+                        ))}
+                   </Box>
                 </Box>
             ))}
         </Box>

@@ -1,10 +1,18 @@
 import React, {useMemo, useState} from 'react';
-import {Evidence} from "./types/Evidence";
+import {Evidence, iconForEvidence} from "./types/Evidence";
 import { Ghosts } from "./game/Ghosts";
 import {Box, Button, CheckBox, Text} from "grommet";
 import {GhostList} from "./GhostList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faUndo} from "@fortawesome/free-solid-svg-icons";
+import {
+    faBookOpen,
+    faCircle,
+    faFingerprint, faMobile,
+    faTachometerAlt,
+    faThermometerEmpty,
+    faUndo,
+    faWifi
+} from "@fortawesome/free-solid-svg-icons";
 
 export const GhostFinder = () => {
 
@@ -43,14 +51,19 @@ export const GhostFinder = () => {
     }, [possibleGhosts])
 
     return (
-        <>
-            <Box direction="row" wrap margin={{bottom: 'small'}}>
+        <Box align="center">
+            <Box direction="row" wrap align="center" justify="center" margin={{bottom: 'small'}} width={{max: '1000px'}}>
                 {evidenceTypes.map((evidence) =>
                     <Box pad="small">
                         <CheckBox
-                            label={possibleEvidences.includes(evidence) ?
-                                <Text weight="bold">{evidence}</Text> :
-                                <Text style={{textDecoration: 'line-through'}}>{evidence}</Text>}
+                            label={
+                                <>
+                                    <Text weight="bold" style={!possibleEvidences.includes(evidence) ? {textDecoration: 'line-through'} : undefined}>
+                                        {evidence.replaceAll('_', ' ')}&nbsp;
+                                    </Text>
+                                    <FontAwesomeIcon icon={iconForEvidence(evidence)} />
+                                </>
+                            }
                             disabled={!possibleEvidences.includes(evidence)}
                             checked={enabledEvidences.includes(evidence)}
                             onChange={(event) => {
@@ -67,15 +80,15 @@ export const GhostFinder = () => {
                         }} />
                     </Box>
                 )}
-                <Box pad="small">
-                    <Button onClick={() => setEnabledEvidences([])} title="Clear enabled evidences">
-                        <FontAwesomeIcon icon={faUndo} />
-                    </Button>
-                </Box>
             </Box>
-            <Box fill="vertical" overflow="auto">
+            <Box width="120px" pad={{horizontal: 'small', vertical: "xsmall"}} align="center" justify="center" border={{size: '1px'}} round="small" background="light-3">
+                <Button onClick={() => setEnabledEvidences([])} title="Clear enabled evidences">
+                    <Text>Clear</Text>&nbsp;&nbsp;<FontAwesomeIcon icon={faUndo} />
+                </Button>
+            </Box>
+            <Box fill="vertical" overflow="auto" margin={{top: 'small'}}>
                 <GhostList ghosts={possibleGhosts} />
             </Box>
-        </>
+        </Box>
     )
 }
