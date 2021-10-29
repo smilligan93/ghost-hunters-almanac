@@ -2,16 +2,7 @@ import React from 'react';
 import {Ghost} from "./types/Ghost";
 import {Box, Text} from "grommet";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {Evidence, iconForEvidence} from "./types/Evidence";
-import {
-    faThermometerEmpty,
-    faBookOpen,
-    faCircle,
-    faFingerprint,
-    faBraille,
-    faTachometerAlt, faMobile, faWifi
-} from "@fortawesome/free-solid-svg-icons";
-
+import {iconForEvidence} from "./types/Evidence";
 
 type Props = {
     ghosts: Ghost[];

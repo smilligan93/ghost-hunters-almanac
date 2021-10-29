@@ -4,15 +4,7 @@ import { Ghosts } from "./game/Ghosts";
 import {Box, Button, CheckBox, Text} from "grommet";
 import {GhostList} from "./GhostList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faBookOpen,
-    faCircle,
-    faFingerprint, faMobile,
-    faTachometerAlt,
-    faThermometerEmpty,
-    faUndo,
-    faWifi
-} from "@fortawesome/free-solid-svg-icons";
+import { faUndo } from "@fortawesome/free-solid-svg-icons";
 
 export const GhostFinder = () => {
 
