@@ -82,7 +82,7 @@ export const GhostFinder = ({ enabledEvidenceSharedState, disabledEvidenceShared
                 ]}
             >
                 {evidenceTypes.map((evidence) =>
-                    <Box gridArea={evidence}>
+                    <Box key={evidence} gridArea={evidence}>
                         <EvidenceCheckBox
                             enabled={enabledEvidences.includes(evidence)}
                             disabled={disabledEvidences.includes(evidence)}
