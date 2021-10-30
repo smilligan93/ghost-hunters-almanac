@@ -8,6 +8,7 @@ import {Theme} from "./Theme";
 import {useNewSharedState} from "./hooks";
 import {GameMap} from "./types/Map";
 import {Evidence} from "./types/Evidence";
+import {MapBrowser} from "./components/MapBrowser";
 
 function App() {
 
@@ -39,6 +40,11 @@ function App() {
                                       enabledEvidenceSharedState={enabledEvidenceSharedState}
                                       disabledEvidenceSharedState={disabledEvidenceSharedState}
                                   />
+                              </Box>
+                          </Tab>
+                          <Tab title="Map Browser">
+                              <Box pad={{top: 'small'}}>
+                                  <MapBrowser mapSharedState={mapSharedState} />
                               </Box>
                           </Tab>
                       </Tabs>
