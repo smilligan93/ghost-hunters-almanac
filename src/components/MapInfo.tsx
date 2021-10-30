@@ -8,8 +8,6 @@ type Props = {
 
 export const MapInfo = ({ map }: Props) => {
 
-    console.log(map.images)
-
     return (
         <Box
             direction="column"

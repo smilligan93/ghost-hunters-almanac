@@ -5,8 +5,17 @@ import { PageFooter } from './components/PageFooter';
 import {CookiesProvider} from "react-cookie";
 import {GhostFinder} from "./components/GhostFinder";
 import {Theme} from "./Theme";
+import {useNewSharedState} from "./hooks";
+import {GameMap} from "./types/Map";
+import {Evidence} from "./types/Evidence";
 
 function App() {
+
+    const mapSharedState = useNewSharedState<GameMap | undefined>(undefined);
+    const difficultySharedState = useNewSharedState<string | undefined>(undefined);
+    const enabledEvidenceSharedState = useNewSharedState<Evidence[]>([]);
+    const disabledEvidenceSharedState = useNewSharedState<Evidence[]>([]);
+
     return (
       <CookiesProvider>
           <Grommet full background="dark-2" theme={Theme}>
@@ -18,12 +27,18 @@ function App() {
                       <Tabs>
                           <Tab title="Random Map">
                               <Box pad={{top: 'small'}}>
-                                  <RandomMapControls />
+                                  <RandomMapControls
+                                      mapSharedState={mapSharedState}
+                                      difficultySharedState={difficultySharedState}
+                                  />
                               </Box>
                           </Tab>
                           <Tab title="Ghost Helper">
                               <Box pad={{top: 'small'}}>
-                                  <GhostFinder />
+                                  <GhostFinder
+                                      enabledEvidenceSharedState={enabledEvidenceSharedState}
+                                      disabledEvidenceSharedState={disabledEvidenceSharedState}
+                                  />
                               </Box>
                           </Tab>
                       </Tabs>

@@ -1,12 +1,20 @@
-import React, {useMemo, useState} from 'react';
-import {Evidence, evidenceName, iconForEvidence} from "../types/Evidence";
+import React, {useMemo} from 'react';
+import {Evidence} from "../types/Evidence";
 import { Ghosts } from "../game/Ghosts";
-import {Box, Button, CheckBox, Text} from "grommet";
+import {Box, Button, Text} from "grommet";
 import {GhostList} from "./GhostList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUndo } from "@fortawesome/free-solid-svg-icons";
+import {removeFromArray, SharedState} from "../lib";
+import {useSharedState} from "../hooks";
+import {EvidenceCheckBox} from "./EvidenceCheckBox";
 
-export const GhostFinder = () => {
+type Props = {
+    enabledEvidenceSharedState: SharedState<Evidence[]>;
+    disabledEvidenceSharedState: SharedState<Evidence[]>;
+}
+
+export const GhostFinder = ({ enabledEvidenceSharedState, disabledEvidenceSharedState }: Props) => {
 
     const evidenceTypes: Evidence[] = useMemo(() => {
         const evidences: Evidence[] = [];
@@ -21,16 +29,25 @@ export const GhostFinder = () => {
         return evidences;
     }, [])
 
-    const [enabledEvidences, setEnabledEvidences] = useState<Evidence[]>([]);
+    const [enabledEvidences, setEnabledEvidences] = useSharedState(enabledEvidenceSharedState);
+    const [disabledEvidences, setDisabledEvidences] = useSharedState(disabledEvidenceSharedState);
 
     const possibleGhosts = useMemo(() => {
         return Ghosts.filter(ghost => {
-            return enabledEvidences.reduce((allContained: boolean, evidence) => {
+            const hasEnabled = enabledEvidences.reduce((allContained: boolean, evidence) => {
 
                 return allContained && ghost.evidence.includes(evidence);
-            }, true)
+            }, true);
+            if (hasEnabled) {
+                const hasDisabled = disabledEvidences.reduce((anyContained: boolean, evidence) => {
+
+                    return anyContained || ghost.evidence.includes(evidence);
+                }, false);
+                return hasEnabled && !hasDisabled;
+            }
+            return hasEnabled;
         })
-    }, [enabledEvidences]);
+    }, [enabledEvidences, disabledEvidences]);
 
     const possibleEvidences: Evidence[] = useMemo(() => {
         const evidences = new Set<Evidence>();
@@ -39,46 +56,42 @@ export const GhostFinder = () => {
                 evidences.add(evidence);
             }
         }
+        // must include the disabledEvidences here, otherwise we can't re-enable them
+        for (const evi of disabledEvidences) {
+            evidences.add(evi);
+        }
         return Array.from(evidences.values());
-    }, [possibleGhosts])
+    }, [possibleGhosts, disabledEvidences])
 
     return (
         <Box align="center">
             <Box direction="row" wrap align="center" justify="center" margin={{bottom: 'small'}} width={{max: '1000px'}}>
                 {evidenceTypes.map((evidence) =>
-                    <Box key={evidence} pad="small">
-                        <CheckBox
-                            label={
-                                <>
-                                    <Text
-                                        weight="bold"
-                                        color={enabledEvidences.includes(evidence) ? 'accent-1' : undefined}
-                                        style={!possibleEvidences.includes(evidence) ? {textDecoration: 'line-through'} : undefined}>
-                                        {evidenceName(evidence)}&nbsp;
-                                        <FontAwesomeIcon icon={iconForEvidence(evidence)} />
-                                    </Text>
-                                </>
-                            }
-                            disabled={!possibleEvidences.includes(evidence)}
-                            checked={enabledEvidences.includes(evidence)}
-                            onChange={(event) => {
-                                if (event.target.checked && !enabledEvidences.includes(evidence)) {
-                                    setEnabledEvidences([...enabledEvidences, evidence]);
-                                } else {
-                                    const copy = [...enabledEvidences];
-                                    const index = copy.indexOf(evidence);
-                                    if (index >= 0) {
-                                        copy.splice(index, 1);
-                                        setEnabledEvidences(copy);
-                                    }
-                                }
-                        }} />
-                    </Box>
+                    <EvidenceCheckBox
+                        enabled={enabledEvidences.includes(evidence)}
+                        disabled={disabledEvidences.includes(evidence)}
+                        possible={possibleEvidences.includes(evidence)}
+                        evidence={evidence}
+                        onEnable={() => {
+                            setEnabledEvidences([...enabledEvidences, evidence]);
+                            setDisabledEvidences(removeFromArray(disabledEvidences, evidence));
+                        }}
+                        onDisable={() => {
+                            setEnabledEvidences(removeFromArray(enabledEvidences, evidence));
+                            setDisabledEvidences([...disabledEvidences, evidence]);
+                        }} onClear={() => {
+                            setEnabledEvidences(removeFromArray(enabledEvidences, evidence));
+                            setDisabledEvidences(removeFromArray(disabledEvidences, evidence));
+                        }}
+                    />
                 )}
             </Box>
             <Button
                 primary
-                onClick={() => setEnabledEvidences([])}
+                onClick={() => {
+                    setEnabledEvidences([]);
+                    setDisabledEvidences([]);
+                }}
                 title="Clear enabled evidences"
                 label={
                     <Box width="100px" direction="row" justify="center" align="center">

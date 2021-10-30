@@ -7,10 +7,16 @@ import {faCaretDown, faCaretUp, faDice} from "@fortawesome/free-solid-svg-icons"
 import {GameMap} from "../types/Map";
 import {DropButtonWithOptions} from "./DropButtonWithOptions";
 import {MapInfo} from "./MapInfo";
+import {SharedState} from "../lib";
 
-export const RandomMapControls = () => {
+type Props = {
+    mapSharedState: SharedState<GameMap | undefined>;
+    difficultySharedState: SharedState<string | undefined>;
+}
+
+export const RandomMapControls = ({ mapSharedState, difficultySharedState }: Props) => {
     const mapsSharedState = useNewSharedStateWithCookie<string[]>([...Maps.map(map => map.name)], 'selectedMaps');
-    const difficultySharedState = useNewSharedStateWithCookie<string[]>([...difficulties], 'selectedDifficulties');
+    const difficultiesSharedState = useNewSharedStateWithCookie<string[]>([...difficulties], 'selectedDifficulties');
     const showMapInfoSharedState = useNewSharedStateWithCookie<boolean>(false, 'showRandomMapInfo');
 
     const [mapsEmpty, setMapsEmpty] = useState(false);
@@ -24,8 +30,8 @@ export const RandomMapControls = () => {
         return () => sub.unsubscribe();
     }, [mapsSharedState, setMapsEmpty])
 
-    const [map, setMap] = useState<GameMap | undefined>(undefined);
-    const [difficulty, setDifficulty] = useState<string | undefined>(undefined);
+    const [map, setMap] = useSharedState(mapSharedState);
+    const [difficulty, setDifficulty] = useSharedState(difficultySharedState)
 
     const handleMapGenerate = () => {
         const maps = mapsSharedState.get();
@@ -39,7 +45,7 @@ export const RandomMapControls = () => {
 
             setMap(Maps.find(m => m.name === newMap));
         }
-        const difficulties = difficultySharedState.get();
+        const difficulties = difficultiesSharedState.get();
         if (difficulties.length > 0) {
             const randomNum = Math.floor(Math.random() * difficulties.length);
             const newDiff = difficulties[randomNum];
@@ -67,7 +73,7 @@ export const RandomMapControls = () => {
                 <DropButtonWithOptions sharedState={mapsSharedState} options={smallMaps} title="Small" />
                 <DropButtonWithOptions sharedState={mapsSharedState} options={mediumMaps} title="Medium" />
                 <DropButtonWithOptions sharedState={mapsSharedState} options={largeMaps} title="Large" />
-                <DropButtonWithOptions sharedState={difficultySharedState} options={difficulties} title="Difficulty" />
+                <DropButtonWithOptions sharedState={difficultiesSharedState} options={difficulties} title="Difficulty" />
             </Box>
             <Box>
             <Button
