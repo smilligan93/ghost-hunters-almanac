@@ -17,9 +17,7 @@ export const EvidenceCheckBox = ({ enabled, disabled, evidence, possible, onDisa
 
     return (
         <Box
-            key={evidence}
             unselectable={"on"}
-            pad="small"
             onContextMenu={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
@@ -35,6 +33,7 @@ export const EvidenceCheckBox = ({ enabled, disabled, evidence, possible, onDisa
                     <>
                         <Text
                             weight="bold"
+                            size="small"
                             color={ enabled ? 'accent-1' : disabled ? 'dark-4' : undefined}
                             style={(disabled || !possible) ? {textDecoration: 'line-through'} : undefined}>
                             {evidenceName(evidence)}&nbsp;

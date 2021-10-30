@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {Evidence} from "../types/Evidence";
 import { Ghosts } from "../game/Ghosts";
-import {Box, Button, Text} from "grommet";
+import {Box, Button, Grid, Text} from "grommet";
 import {GhostList} from "./GhostList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUndo } from "@fortawesome/free-solid-svg-icons";
@@ -65,9 +65,49 @@ export const GhostFinder = ({ enabledEvidenceSharedState, disabledEvidenceShared
 
     return (
         <Box align="center">
-            <Box direction="row" wrap align="center" justify="center" margin={{bottom: 'small'}} width={{max: '1000px'}}>
+            <Grid
+                margin={{bottom: 'small'}}
+                rows={['auto', 'auto', 'auto', 'auto']}
+                columns={['auto', 'auto']}
+                gap="small"
+                align="center"
+                areas={[
+                    { name: 'EMF_Level_5', start: [0, 0], end: [0, 0] },
+                    { name: 'DOTS_Projector', start: [1, 0], end: [1, 0] },
+                    { name: 'Fingerprints', start: [0, 1], end: [0, 1] },
+                    { name: 'Ghost_Orb', start: [1, 1], end: [1, 1] },
+                    { name: 'Ghost_Writing', start: [0, 2], end: [0, 2] },
+                    { name: 'Spirit_Box', start: [1, 2], end: [1, 2]},
+                    { name: 'Freezing_Temperature', start: [0, 3], end: [1, 3] }
+                ]}
+            >
+                {evidenceTypes.map((evidence) =>
+                    <Box gridArea={evidence}>
+                        <EvidenceCheckBox
+                            enabled={enabledEvidences.includes(evidence)}
+                            disabled={disabledEvidences.includes(evidence)}
+                            possible={possibleEvidences.includes(evidence)}
+                            evidence={evidence}
+                            onEnable={() => {
+                                setEnabledEvidences([...enabledEvidences, evidence]);
+                                setDisabledEvidences(removeFromArray(disabledEvidences, evidence));
+                            }}
+                            onDisable={() => {
+                                setEnabledEvidences(removeFromArray(enabledEvidences, evidence));
+                                setDisabledEvidences([...disabledEvidences, evidence]);
+                            }} onClear={() => {
+                            setEnabledEvidences(removeFromArray(enabledEvidences, evidence));
+                            setDisabledEvidences(removeFromArray(disabledEvidences, evidence));
+                        }}
+                        />
+                    </Box>
+                )}
+            </Grid>
+
+            {/*<Box direction="row" wrap align="center" justify="center" margin={{bottom: 'small'}} width={{max: '1000px'}}>
                 {evidenceTypes.map((evidence) =>
                     <EvidenceCheckBox
+                        key={evidence}
                         enabled={enabledEvidences.includes(evidence)}
                         disabled={disabledEvidences.includes(evidence)}
                         possible={possibleEvidences.includes(evidence)}
@@ -85,7 +125,7 @@ export const GhostFinder = ({ enabledEvidenceSharedState, disabledEvidenceShared
                         }}
                     />
                 )}
-            </Box>
+            </Box>*/}
             <Button
                 primary
                 onClick={() => {

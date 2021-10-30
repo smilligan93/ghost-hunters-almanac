@@ -34,7 +34,7 @@ function App() {
                                   />
                               </Box>
                           </Tab>
-                          <Tab title="Ghost Helper">
+                          <Tab title="Evidence">
                               <Box pad={{top: 'small'}}>
                                   <GhostFinder
                                       enabledEvidenceSharedState={enabledEvidenceSharedState}
