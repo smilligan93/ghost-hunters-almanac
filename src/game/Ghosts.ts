@@ -196,6 +196,17 @@ export const Spirit: Ghost = {
     ]
 }
 
+export const The_Mimic: Ghost = {
+    type: 'The_Mimic',
+    evidence: ['Spirit_Box', 'Freezing_Temperature', 'Fingerprints'],
+    description: 'The Mimic is an elusive, mysterious, copycat ghost that mirrors traits and behaviours from others, including other ghost types.',
+    strength: "We're unsure what this ghost is capable of. Be careful.",
+    weakness: "Several reports have noted ghost orb sightings near mimics.",
+    tips: [
+
+    ]
+}
+
 export const The_Twins: Ghost = {
     type: 'The_Twins',
     evidence: ['EMF_Level_5', 'Spirit_Box', 'Freezing_Temperature'],
@@ -264,6 +275,7 @@ export const Ghosts = [
     Revenant,
     Shade,
     Spirit,
+    The_Mimic,
     The_Twins,
     Wraith,
     Yokai,

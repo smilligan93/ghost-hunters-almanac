@@ -11,7 +11,6 @@ import {Evidence} from "./types/Evidence";
 import {MapBrowser} from "./components/MapBrowser";
 
 function App() {
-
     const mapSharedState = useNewSharedState<GameMap | undefined>(undefined);
     const difficultySharedState = useNewSharedState<string | undefined>(undefined);
     const enabledEvidenceSharedState = useNewSharedState<Evidence[]>([]);

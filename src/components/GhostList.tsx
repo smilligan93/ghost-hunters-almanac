@@ -4,6 +4,7 @@ import {Accordion, AccordionPanel, Box, Button, Text} from "grommet";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Evidence, evidenceName, iconForEvidence} from "../types/Evidence";
 import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {GhostEvidenceBox} from "./GhostEvidenceBox";
 
 type Props = {
     ghosts: Ghost[];
@@ -30,15 +31,7 @@ export const GhostList = ({ ghosts, enabledEvidence }: Props) => {
                             align="center"
                         >
                             <Text weight="bold" size="large">{ghostName(ghost.type)}</Text>
-                            <Box direction="row" gap="xsmall">
-                                {ghost.evidence.map((evidence) => (
-                                    <Box key={evidence} width="25px" align="center" justify="center" >
-                                        <Text color={enabledEvidence.includes(evidence) ? 'accent-1' : undefined}>
-                                            <FontAwesomeIcon title={evidenceName(evidence)} size={"1x"} icon={iconForEvidence(evidence)} />
-                                        </Text>
-                                    </Box>
-                                ))}
-                            </Box>
+                            <GhostEvidenceBox evidences={ghost.evidence} discoveredEvidences={enabledEvidence} />
                         </Box>
                     }>
                         <Box gap="small" pad={{horizontal: 'medium'}} align="center">
