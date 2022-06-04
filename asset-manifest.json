@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/ghost-hunters-almanac/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/ghost-hunters-almanac/static/js/main.5f4aa1e3.chunk.js",
-    "main.js.map": "/ghost-hunters-almanac/static/js/main.5f4aa1e3.chunk.js.map",
+    "main.js": "/ghost-hunters-almanac/static/js/main.e4b85360.chunk.js",
+    "main.js.map": "/ghost-hunters-almanac/static/js/main.e4b85360.chunk.js.map",
     "runtime-main.js": "/ghost-hunters-almanac/static/js/runtime-main.a9ca1e25.js",
     "runtime-main.js.map": "/ghost-hunters-almanac/static/js/runtime-main.a9ca1e25.js.map",
-    "static/js/2.f6627a02.chunk.js": "/ghost-hunters-almanac/static/js/2.f6627a02.chunk.js",
-    "static/js/2.f6627a02.chunk.js.map": "/ghost-hunters-almanac/static/js/2.f6627a02.chunk.js.map",
+    "static/js/2.ebefc694.chunk.js": "/ghost-hunters-almanac/static/js/2.ebefc694.chunk.js",
+    "static/js/2.ebefc694.chunk.js.map": "/ghost-hunters-almanac/static/js/2.ebefc694.chunk.js.map",
     "static/js/3.34679ded.chunk.js": "/ghost-hunters-almanac/static/js/3.34679ded.chunk.js",
     "static/js/3.34679ded.chunk.js.map": "/ghost-hunters-almanac/static/js/3.34679ded.chunk.js.map",
     "index.html": "/ghost-hunters-almanac/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/ghost-hunters-almanac/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.f6627a02.chunk.js.LICENSE.txt": "/ghost-hunters-almanac/static/js/2.f6627a02.chunk.js.LICENSE.txt"
+    "static/js/2.ebefc694.chunk.js.LICENSE.txt": "/ghost-hunters-almanac/static/js/2.ebefc694.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a9ca1e25.js",
-    "static/js/2.f6627a02.chunk.js",
+    "static/js/2.ebefc694.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.5f4aa1e3.chunk.js"
+    "static/js/main.e4b85360.chunk.js"
   ]
 }
